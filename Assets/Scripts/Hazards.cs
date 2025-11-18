@@ -14,25 +14,21 @@ public class Hazards : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        RacerMovement racer = collision.gameObject.GetComponent<RacerMovement>();
-        if (racer)
+        //checks if colliding obj is player
+        if (collision.gameObject.GetComponent<RacerMovement>())
         {
-           // racer.ApplySlow(slowAmount, slowDuration);
-
+           // collision.gameObject.GetComponent<RacerMovement>().ApplySlow();
         }
     }
 
 
 
-    // reduces maxSpeed temporarily
     public void ApplySlow(float slowAmount, float duration)
     {
-       // currentSpeed = Mathf.Max(currentSpeed * slowAmount, 0f);
+      // currentSpeed = Mathf.Max(currentSpeed * slowAmount, 0f);
     }
 
-
-
-
+    //still trying to figure out the slowdown
 
 
 }
