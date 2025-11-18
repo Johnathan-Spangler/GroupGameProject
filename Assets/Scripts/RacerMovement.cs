@@ -18,7 +18,7 @@ public class RacerMovement : MonoBehaviour
 
     public float maxSpeed = 8f, acceleration = 6f, brakeSmoothTime = 0.35f, turnSpeedDegreesPerSecond = 240f, rotateInputTurnRate = 180f;
 
-    public bool moveAlongLocalForward = true, preserveVerticalVelocity = true;
+    public bool moveAlongLocalForward = true, preserveVerticalVelocity = true, braking;
 
     Rigidbody rb;
 
@@ -37,7 +37,7 @@ public class RacerMovement : MonoBehaviour
 
     void Update()
     {
-        bool braking = Input.GetKey(KeyCode.Space);
+        braking = Input.GetKey(KeyCode.Space);
 
         float targetSpeed = braking ? 0f : maxSpeed;
 
