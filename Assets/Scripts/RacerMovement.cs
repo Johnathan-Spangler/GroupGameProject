@@ -120,4 +120,8 @@ public class RacerMovement : MonoBehaviour
     {
         movementType = mode;
     }*/
+
+
+    ///If using boost, negate speed decrease when in dirt
+    ///when in dirt, decrease speed unless speed boosted
 }
