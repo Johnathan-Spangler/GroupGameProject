@@ -9,26 +9,23 @@ using UnityEngine;
 
 public class Hazards : MonoBehaviour
 {
-    public float slowAmount = 0.5f;
-    public float slowDuration = 1f;
+    public float penalty = 7f;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        //checks if colliding obj is player
-        if (collision.gameObject.GetComponent<RacerMovement>())
+        RacerMovement racer = other.GetComponentInParent<RacerMovement>();
+
+        if (racer != null)
         {
-           // collision.gameObject.GetComponent<RacerMovement>().ApplySlow();
+            racer.currentSpeed = Mathf.Max(0f, racer.currentSpeed - penalty);
+            Debug.Log("Hazard hit! Speed reduced.");
         }
     }
 
 
 
-    public void ApplySlow(float slowAmount, float duration)
-    {
-      // currentSpeed = Mathf.Max(currentSpeed * slowAmount, 0f);
-    }
 
-    //still trying to figure out the slowdown
+
 
 
 }

@@ -22,7 +22,7 @@ public class RacerMovement : MonoBehaviour
 
     Rigidbody rb;
 
-    float currentSpeed = 0f, speedVelocityRef = 0f, currentYaw;
+   public float currentSpeed = 0f, speedVelocityRef = 0f, currentYaw;
 
     void Awake()
     {
