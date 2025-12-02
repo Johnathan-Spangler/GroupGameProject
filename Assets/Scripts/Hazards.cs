@@ -21,4 +21,11 @@ public class Hazards : MonoBehaviour
             Debug.Log("Hazard hit! Speed reduced.");
         }
     }
+
+
+
+
+
+
+
 }
