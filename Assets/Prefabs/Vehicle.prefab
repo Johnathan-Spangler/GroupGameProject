@@ -298,7 +298,7 @@ MonoBehaviour:
   acceleration: 20
   brakeSmoothTime: 0.5
   turnSpeedDegreesPerSecond: 240
-  rotateInputTurnRate: 180
+  rotateInputTurnRate: 200
   moveAlongLocalForward: 1
   preserveVerticalVelocity: 1
   braking: 0

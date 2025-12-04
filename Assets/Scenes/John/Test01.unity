@@ -792,6 +792,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3305182544428998675, guid: f04d4190e377f2544a8e90e0c3a76248, type: 3}
+      propertyPath: rotateInputTurnRate
+      value: 240
+      objectReference: {fileID: 0}
     - target: {fileID: 4688256779526227218, guid: f04d4190e377f2544a8e90e0c3a76248, type: 3}
       propertyPath: m_Name
       value: Car

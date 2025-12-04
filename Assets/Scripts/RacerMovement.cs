@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+//using UnityEngine.InputSystem;
 
 /* Johnathan Spangler
  * 11/18/25
@@ -22,7 +24,9 @@ public class RacerMovement : MonoBehaviour
 
     Rigidbody rb;
 
-   public float currentSpeed = 0f, speedVelocityRef = 0f, currentYaw;
+    public float currentSpeed = 0f, speedVelocityRef = 0f, currentYaw;
+
+    public ControllerImplementation inputActions;
 
     void Awake()
     {
@@ -33,11 +37,30 @@ public class RacerMovement : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
         currentYaw = transform.eulerAngles.y;
+
+        inputActions = new ControllerImplementation();
+    }
+
+    void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    void OnDisable()
+    {
+        inputActions.Disable();
     }
 
     void Update()
     {
-        braking = Input.GetKey(KeyCode.Space);
+        if (inputActions.Controller.Brake.WasPressedThisFrame())
+        {
+            braking = true;
+        }
+        else if (inputActions.Controller.Brake.WasReleasedThisFrame())
+        {
+            braking = false;
+        }
 
         float targetSpeed = braking ? 0f : maxSpeed;
 
@@ -86,8 +109,8 @@ public class RacerMovement : MonoBehaviour
     void HandleRotateMode()
     {
         float h = 0f;
-        if (Input.GetKey(KeyCode.A)) h -= 1f;
-        if (Input.GetKey(KeyCode.D)) h += 1f;
+        if (inputActions.Controller.Left.IsPressed()) h -= 1f;
+        if (inputActions.Controller.Right.IsPressed()) h += 1f;
 
         float turnAmount = h * rotateInputTurnRate * Time.deltaTime;
         currentYaw += turnAmount;
@@ -96,10 +119,10 @@ public class RacerMovement : MonoBehaviour
     void HandleFreeMode()
     {
         Vector2 input = Vector2.zero;
-        if (Input.GetKey(KeyCode.W)) input.y += 1f;
-        if (Input.GetKey(KeyCode.S)) input.y -= 1f;
-        if (Input.GetKey(KeyCode.D)) input.x += 1f;
-        if (Input.GetKey(KeyCode.A)) input.x -= 1f;
+        if (inputActions.Controller.Up.IsPressed()) input.y += 1f;
+        if (inputActions.Controller.Down.IsPressed()) input.y -= 1f;
+        if (inputActions.Controller.Right.IsPressed()) input.x += 1f;
+        if (inputActions.Controller.Left.IsPressed()) input.x -= 1f;
 
         if (input.sqrMagnitude > 0.0001f)
         {

@@ -17,7 +17,7 @@ public class CameraLogic : MonoBehaviour
 
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (car == null || AiControl == null) return;
 
